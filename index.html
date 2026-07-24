@@ -240,7 +240,7 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
     <a class="btn btn-g" href="#modules">View the modules</a>
   </div>
   <div class="hero-stats">
-    <div class="s"><span class="n">13</span><span class="l">Operational modules</span></div>
+    <div class="s"><span class="n">12</span><span class="l">Operational modules</span></div>
     <div class="s"><span class="n">8</span><span class="l">Payment networks modeled</span></div>
     <div class="s"><span class="n">7</span><span class="l">Data domains + schema</span></div>
     <div class="s"><span class="n">100%</span><span class="l">TypeScript / Next.js 15</span></div>
@@ -249,7 +249,7 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
 <section id="modules"><div class="wrap">
   <div class="sec-head">
     <span class="kicker">The Platform</span>
-    <h2>Thirteen modules. One coherent system.</h2>
+    <h2>Twelve modules. One coherent system.</h2>
     <p>Every module is its own surface, but they all share one schema, one set of design tokens, and route-level access control. Click any card to open that module in the demo below.</p>
   </div>
   <div class="mods">
@@ -313,12 +313,6 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
       <div class="rt mono">/reference/rails</div>
       <p>Rail-ID specification across NACHA, IMAD, ARN, TLID, and UETR identifiers.</p>
     </div>
-    <div class="mod" data-route="/reference/edge-cases" title="Open in the demo">
-      <div class="ic">🧩</div>
-      <h3>Edge Cases</h3>
-      <div class="rt mono">/reference/edge-cases</div>
-      <p>Network edge-case catalog covering Maestro NREC/NRID, MC EREC, Visa ARN, and Pulse RRN.</p>
-    </div>
     <div class="mod" data-route="/portal" title="Open in the demo">
       <div class="ic">👤</div>
       <h3>Customer Portal</h3>
@@ -337,7 +331,7 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
   <div class="sec-head">
     <span class="kicker">Interactive Demo</span>
     <h2>Click through the platform.</h2>
-    <p>A working front-end demo of all thirteen modules, running on mock data. Use the sidebar, press <kbd>⌘K</kbd> for the command palette, expand table rows, or deep-link straight to a module — the URL bar mirrors the app's route structure. The proprietary computations stay locked.</p>
+    <p>A working front-end demo of all twelve modules, running on mock data. Use the sidebar, press <kbd>⌘K</kbd> for the command palette, expand table rows, or deep-link straight to a module — the URL bar mirrors the app's route structure. The proprietary computations stay locked.</p>
   </div>
   <div class="demo-wrap">
     <div class="demo-top">
@@ -934,52 +928,6 @@ APEX BARBER SUPPLY INV-2216</textarea>
 </div>
 <div class="locked"><span class="lk">🔒</span><div><b>Normalization pipeline hidden</b><p>How EVF parses, validates, and folds these eight formats into a single canonical ID — the rail-normalization pipeline and canonical-ID scheme — is proprietary and withheld from this showcase.</p></div></div>
 </template>
-<template data-view="edge">
-<div class="crumb">EVF / Reference / Edge Cases</div>
-<div class="view-t">Network Edge-Case Catalog</div>
-<div class="view-d">The settlement anomalies each network can produce, and how EVF routes them — a reference catalog, not a live queue.</div>
-<div class="panel">
-  <div class="panel-h">Edge-case catalog <span class="pill">6 patterns</span></div>
-  <table><thead><tr><th>Code</th><th>Network</th><th>Behavior</th><th>EVF handling</th></tr></thead><tbody>
-    <tr class="xrow"><td class="tid">NREC</td><td>Maestro</td><td>Settlement arrives with no reconciliation expectation</td><td>Quarantined to exception queue with a suggested action: confirm as off-cycle settlement or return</td></tr>
-    <tr class="xdetail" hidden><td colspan="4"><div class="xd-body">
-      <div class="kv"><span class="k">Record</span><span class="v2">EVF-MAE-20260719-c44d</span></div>
-      <div class="kv"><span class="k">Arrived</span><span class="v2">Jul 19, 2026 · 06:12 settlement file · $186.20</span></div>
-      <div class="kv"><span class="k">Expectation</span><span class="v2">None on ledger for this record</span></div>
-      <div class="kv"><span class="k">Resolution</span><span class="v2">Analyst confirmed valid off-cycle settlement · Jul 20</span></div>
-      <button class="btn-sm gold" data-demo-action="Open in exception queue">Open in queue</button>
-      <button class="btn-sm lk">🔒 Replay file</button>
-    </div></td></tr>
-    <tr><td class="tid">NRID</td><td>Maestro</td><td>Reference ID missing on settlement record</td><td>Held for identifier review; analyst supplies or rejects the reference before matching resumes</td></tr>
-    <tr><td class="tid">EREC</td><td>Mastercard</td><td>Settlement precedes the expectation window</td><td>Parked until the expectation window opens, then re-presented for matching</td></tr>
-    <tr class="xrow"><td class="tid">ARN-DUP</td><td>Visa</td><td>Same ARN on two clearing records</td><td>Both records quarantined; suggested action: release one, return the duplicate to the network</td></tr>
-    <tr class="xdetail" hidden><td colspan="4"><div class="xd-body">
-      <div class="kv"><span class="k">Records</span><span class="v2">EVF-VIS-20260718-9d1c · EVF-VIS-20260718-b02e</span></div>
-      <div class="kv"><span class="k">Shared reference</span><span class="v2">ARN •••• 5529 · $64.90 each</span></div>
-      <div class="kv"><span class="k">Resolution</span><span class="v2">First record released to match; second returned to Visa as duplicate · Jul 19</span></div>
-      <button class="btn-sm" data-demo-action="View clearing pair">View clearing pair</button>
-    </div></td></tr>
-    <tr><td class="tid">RRN-REUSE</td><td>Pulse</td><td>RRN collides across processing days</td><td>Colliding records separated by processing day and re-presented individually</td></tr>
-    <tr class="xrow"><td class="tid">WIRE-LATE</td><td>Fedwire</td><td>Statement crosses the day boundary</td><td>Expectation carried to the next statement day; flagged if still unmatched</td></tr>
-    <tr class="xdetail" hidden><td colspan="4"><div class="xd-body">
-      <div class="kv"><span class="k">Record</span><span class="v2">EVF-WIR-20260720-0b3d · $120,000.00</span></div>
-      <div class="kv"><span class="k">Expected</span><span class="v2">Jul 20 statement day; wire posted after cutoff</span></div>
-      <div class="kv"><span class="k">Status</span><span class="v2"><span class="st warn">Exception</span> · late file arrived Jul 21</span></div>
-      <div class="kv"><span class="k">Suggested action</span><span class="v2">Match against the Jul 21 late file and clear the timing break</span></div>
-      <button class="btn-sm gold" data-demo-action="Open in exception queue">Open in queue</button>
-    </div></td></tr>
-  </tbody></table>
-</div>
-<div class="panel">
-  <div class="panel-h">Design stance <span class="pill">reference</span></div>
-  <div class="cols3">
-    <div class="mini"><h4>Expect-first ledger</h4><p>Every inbound settlement is matched against a pre-recorded expectation. Anything the ledger didn't expect is an event to explain, never noise to absorb.</p></div>
-    <div class="mini"><h4>Quarantine over guessing</h4><p>When a record is ambiguous, EVF parks it in the exception queue with a suggested action instead of forcing a match it can't defend.</p></div>
-    <div class="mini"><h4>Analyst feedback loop</h4><p>Every analyst resolution is captured against its edge-case code, so the handling playbook sharpens with each cleared exception.</p></div>
-  </div>
-</div>
-<div class="locked"><span class="lk">🔒</span><div><b>Detection heuristics hidden</b><p>The exact rules that recognize each pattern — and the quarantine thresholds that decide when a record is held versus matched — are EVF's proprietary tuning and are withheld from this public showcase.</p></div></div>
-</template>
 <template data-view="portal">
 <div class="crumb">EVF / Portal / Books</div>
 <div class="view-t">Customer Portal — Books</div>
@@ -1085,7 +1033,6 @@ APEX BARBER SUPPLY INV-2216</textarea>
     {key:'watchkeeper',label:'Watchkeeper',icon:'🔎',route:'/dashboard/watchkeeper',group:'Security & Compliance'},
     {key:'cards',label:'Card Issuing',icon:'💳',route:'/dashboard/card-issuing',group:'Issuing'},
     {key:'rails',label:'Rails Reference',icon:'🚦',route:'/reference/rails',group:'Reference'},
-    {key:'edge',label:'Edge Cases',icon:'🧩',route:'/reference/edge-cases',group:'Reference'},
     {key:'portal',label:'Portal Books',icon:'👤',route:'/portal',group:'Customer'},
     {key:'watch',label:'Money Watch',icon:'👁️',route:'/portal/money-watch',group:'Customer'}
   ];
