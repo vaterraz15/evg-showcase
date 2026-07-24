@@ -8,7 +8,7 @@ EVF is a fintech operations platform I'm building as a personal project. It cove
 
 **https://vaterraz15.github.io/evg-showcase/**
 
-This repository contains the public showcase page and nothing from the platform itself. The page has a click-through demo of all twelve modules running on mock data. The EVF source code and core algorithms are private.
+This repository contains the public showcase page and nothing from the platform itself. The page has a click-through demo of all eleven modules running on mock data. The EVF source code and core algorithms are private.
 
 Things worth trying in the demo:
 
@@ -32,7 +32,6 @@ Wherever the real logic would appear, the demo shows a lock notice naming what w
 | Sentinel | /dashboard/sentinel | SIEM, encryption keys, RBAC audit, incident response, DR, SOC 2 |
 | Watchkeeper | /dashboard/watchkeeper | CIP, OFAC screening, SAR/CTR workflows, CDD queue |
 | Card Issuing | /dashboard/card-issuing | Marqeta Core v3 cardholders, cards, controls, GL linkage |
-| Rails Reference | /reference/rails | Rail-ID spec across NACHA, IMAD, ARN, TLID, UETR |
 | Customer Portal | /portal | Small-business books, auto-categorization, tax package, dispute intake |
 | Money Watch | /portal/money-watch | Alerts when expected money doesn't arrive, plus a 13-week cash projection |
 

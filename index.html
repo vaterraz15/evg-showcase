@@ -240,7 +240,7 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
     <a class="btn btn-g" href="#modules">View the modules</a>
   </div>
   <div class="hero-stats">
-    <div class="s"><span class="n">12</span><span class="l">Operational modules</span></div>
+    <div class="s"><span class="n">11</span><span class="l">Operational modules</span></div>
     <div class="s"><span class="n">8</span><span class="l">Payment networks modeled</span></div>
     <div class="s"><span class="n">7</span><span class="l">Data domains + schema</span></div>
     <div class="s"><span class="n">100%</span><span class="l">TypeScript / Next.js 15</span></div>
@@ -249,7 +249,7 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
 <section id="modules"><div class="wrap">
   <div class="sec-head">
     <span class="kicker">The Platform</span>
-    <h2>Twelve modules. One coherent system.</h2>
+    <h2>Eleven modules. One coherent system.</h2>
     <p>Every module is its own surface, but they all share one schema, one set of design tokens, and route-level access control. Click any card to open that module in the demo below.</p>
   </div>
   <div class="mods">
@@ -307,12 +307,6 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
       <div class="rt mono">/dashboard/card-issuing</div>
       <p>Marqeta Core v3: cardholders, cards, spend controls, and general-ledger linkage.</p>
     </div>
-    <div class="mod" data-route="/reference/rails" title="Open in the demo">
-      <div class="ic">🚦</div>
-      <h3>Rails Reference</h3>
-      <div class="rt mono">/reference/rails</div>
-      <p>Rail-ID specification across NACHA, IMAD, ARN, TLID, and UETR identifiers.</p>
-    </div>
     <div class="mod" data-route="/portal" title="Open in the demo">
       <div class="ic">👤</div>
       <h3>Customer Portal</h3>
@@ -331,7 +325,7 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
   <div class="sec-head">
     <span class="kicker">Interactive Demo</span>
     <h2>Click through the platform.</h2>
-    <p>A working front-end demo of all twelve modules, running on mock data. Use the sidebar, press <kbd>⌘K</kbd> for the command palette, expand table rows, or deep-link straight to a module — the URL bar mirrors the app's route structure. The proprietary computations stay locked.</p>
+    <p>A working front-end demo of all eleven modules, running on mock data. Use the sidebar, press <kbd>⌘K</kbd> for the command palette, expand table rows, or deep-link straight to a module — the URL bar mirrors the app's route structure. The proprietary computations stay locked.</p>
   </div>
   <div class="demo-wrap">
     <div class="demo-top">
@@ -889,45 +883,6 @@ APEX BARBER SUPPLY INV-2216</textarea>
 </div>
 <div class="locked"><span class="lk">🔒</span><div><b>JIT funding and webhook design hidden</b><p>The just-in-time funding decisioning that approves each authorization in real time, and the webhook verification design behind it, are EVF's own build and are withheld from this public showcase.</p></div></div>
 </template>
-<template data-view="rails">
-<div class="crumb">EVF / Reference / Rails</div>
-<div class="view-t">Rails Reference</div>
-<div class="view-d">The rail-identifier specification: what each network's native ID looks like and how EVF keys on it.</div>
-<div class="panel">
-  <div class="panel-h">Identifier formats <span class="pill">public network specs</span></div>
-  <table><thead><tr><th>Rail</th><th>Identifier</th><th>Shape</th><th>Example</th></tr></thead><tbody>
-    <tr><td>ACH / NACHA</td><td>Trace Number</td><td>15 digits — 8-digit ODFI routing prefix + 7-digit entry sequence</td><td class="tid">06710482 0001234</td></tr>
-    <tr><td>Wire / Fedwire</td><td>IMAD</td><td>Cycle date (8) + input source (8) + sequence (6)</td><td class="tid">20260721 QMGFT01A 000482</td></tr>
-    <tr><td>Card networks</td><td>ARN</td><td>23 digits — format code (1) + acquirer BIN (6) + Julian date (4) + sequence (11) + check digit (1)</td><td class="tid">7 441204 6202 00184427716 3</td></tr>
-    <tr><td>SWIFT / CHIPS</td><td>UETR</td><td>UUID v4 — 36 chars, 8-4-4-4-12 hex</td><td class="tid">2b7e1516-28ae-4d4a-9f71-1c26075300ae</td></tr>
-    <tr><td>RTP</td><td>Transaction ID (TLID)</td><td>35-char alphanumeric, cycle-date prefixed, network-unique</td><td class="tid">20260721021000021P1B000000000048127</td></tr>
-  </tbody></table>
-</div>
-<div class="two">
-  <div class="panel">
-    <div class="panel-h">Rail-to-identifier map <span class="pill">8 rails</span></div>
-    <table><thead><tr><th>Rail</th><th>Primary match key</th><th>Fallback</th></tr></thead><tbody>
-      <tr><td>ACH / NACHA</td><td class="mono">Trace Number</td><td class="mono">Batch + entry seq</td></tr>
-      <tr><td>Visa</td><td class="mono">ARN</td><td class="mono">Auth code + •••• PAN</td></tr>
-      <tr><td>Mastercard</td><td class="mono">ARN</td><td class="mono">Auth code + •••• PAN</td></tr>
-      <tr><td>Amex</td><td class="mono">ARN</td><td class="mono">SOC / submission ref</td></tr>
-      <tr><td>Pulse / Maestro</td><td class="mono">ARN</td><td class="mono">Switch trace (STAN)</td></tr>
-      <tr><td>Discover</td><td class="mono">ARN</td><td class="mono">Auth code + •••• PAN</td></tr>
-      <tr><td>Wire / Fedwire</td><td class="mono">IMAD</td><td class="mono">OMAD</td></tr>
-      <tr><td>RTP</td><td class="mono">TLID</td><td class="mono">Instruction ID</td></tr>
-    </tbody></table>
-  </div>
-  <div class="panel">
-    <div class="panel-h">Why rail IDs matter <span class="pill">reference</span></div>
-    <div class="cols3" style="padding:14px">
-      <div class="mini"><h4>Dedupe</h4><p>A network-unique ID is the only safe way to prove two files describe one payment — like the RTP duplicate suspect EVF-RTP-20260721-4e8a.</p></div>
-      <div class="mini"><h4>Traceability</h4><p>Bank ops, the counterparty RDFI, and network support all speak in trace numbers, IMADs, and ARNs — quoting the right one collapses research time.</p></div>
-      <div class="mini"><h4>Settlement tie-out</h4><p>Every entry in a settlement or GL batch must chain back to a rail-native ID, or the day's $1.24M settled total can't be proven.</p></div>
-    </div>
-  </div>
-</div>
-<div class="locked"><span class="lk">🔒</span><div><b>Normalization pipeline hidden</b><p>How EVF parses, validates, and folds these eight formats into a single canonical ID — the rail-normalization pipeline and canonical-ID scheme — is proprietary and withheld from this showcase.</p></div></div>
-</template>
 <template data-view="portal">
 <div class="crumb">EVF / Portal / Books</div>
 <div class="view-t">Customer Portal — Books</div>
@@ -1032,7 +987,6 @@ APEX BARBER SUPPLY INV-2216</textarea>
     {key:'sentinel',label:'Sentinel',icon:'🔐',route:'/dashboard/sentinel',group:'Security & Compliance'},
     {key:'watchkeeper',label:'Watchkeeper',icon:'🔎',route:'/dashboard/watchkeeper',group:'Security & Compliance'},
     {key:'cards',label:'Card Issuing',icon:'💳',route:'/dashboard/card-issuing',group:'Issuing'},
-    {key:'rails',label:'Rails Reference',icon:'🚦',route:'/reference/rails',group:'Reference'},
     {key:'portal',label:'Portal Books',icon:'👤',route:'/portal',group:'Customer'},
     {key:'watch',label:'Money Watch',icon:'👁️',route:'/portal/money-watch',group:'Customer'}
   ];
